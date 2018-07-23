@@ -23,6 +23,7 @@ function initAllUser() {
 
     //step 3 - loop over the array and add every user to the html output
     for(let singleUser of allUsers) {
+document.getElementById("userName").innerHTML=singleUser.fullName;
         userList += `<li>
             <ol style="color:${singleUser.color}">
             <li><h2>full Name: </h2> ${singleUser.fullName}</li>
