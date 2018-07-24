@@ -14,13 +14,16 @@
                     let index = Math.floor(Math.random() * 251);
                     return content[index].name;
                 })
-                .then(countryName => getReqSingelCountryDetails(countryName));
-
+                .then(countryName => getReqSingelCountryDetails(countryName))           
+                .catch(error=>showOnBrowswer(`<h1>countries Names not found</h1>`));
         }
+
+
         function getReqSingelCountryDetails(countryName) {
             fetch("https://restcountries.eu/rest/v2/name/" + countryName)
                 .then(res2 => res2.json())
-                .then(countryDetails => displayMe(countryDetails[0]));
+                .then(countryDetails => displayMe(countryDetails[0]))
+                .catch(error=>showOnBrowswer(`<h1>country details not found</h1>`));
         }
 
         function displayMe(country) {
@@ -35,10 +38,15 @@
                 str += `<li>${lang.name}</li>`;
             }
             str += `</ul>
-                    <img src="${country.flag}" alt="${country.name} flag"width="150px" height="100px" >`;
+                    <img src="${country.flag}" alt="${country.name} flag" width="150px" height="100px" >`;
            
-            document.getElementById("country").innerHTML = str;
+           showOnBrowswer(str);
         }
+        showOnBrowswer=(template)=>{
+            document.getElementById("country").innerHTML = template;
+
+        }
+        
 
     </script>
 </head>
@@ -46,6 +54,7 @@
 <body onload="getReqAllCountryNames()">
 
     <div id="country">
+        <h1>countries Names not found</h1>
     </div>
 
 
