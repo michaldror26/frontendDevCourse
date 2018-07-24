@@ -33,7 +33,7 @@
                 str + "<li>" + lang.name + "</li>"
             }
             str += `</ul>
-                    <img src="" alt="">`;
+                    <img src="${country.flag}" alt="${country.name} flag"width="150px" height="100px" >`;
             document.getElementById("country").innerHTML=str;
         }
 
@@ -43,7 +43,7 @@
 <body onload="getReqAllCountryNames()">
 
 <div id="country" >
-
+<img src="" width="100" height="100" alt="">
 </div>
 
 
