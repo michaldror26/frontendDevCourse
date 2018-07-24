@@ -21,12 +21,12 @@
         function getReqSingelCountryDetails(countryName) {
             fetch("https://restcountries.eu/rest/v2/name/" + countryName)
                 .then(res2 => res2.json())
-                .then(countryDetails => displayMe(countryDetails));
+                .then(countryDetails => displayMe(countryDetails[0]));
         }
 
         function displayMe(country) {
             let str = `<h1>${country.name}</h1>
-                        <p>My Capital:</p>${country.capital}  
+                        <p>My Capital: ${country.capital}  </p>
                         <p>Languages spoken:</p>
                         <ul>`
             for (lang in country.languages) {
@@ -34,7 +34,7 @@
             }
             str += `</ul>
                     <img src="" alt="">`;
-document.getElementById("country").innerHTML=str;
+            document.getElementById("country").innerHTML=str;
         }
 
     </script>
