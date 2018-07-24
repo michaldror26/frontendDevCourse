@@ -14,22 +14,38 @@
                     let index = Math.floor(Math.random() * 251);
                     return content[index].name;
                 })
-               // .then(countryName=>console.log(countryName));
+                // .then(countryName=>console.log(countryName));
                 .then(countryName => getReqSingelCountryDetails(countryName));
 
         }
         function getReqSingelCountryDetails(countryName) {
             fetch("https://restcountries.eu/rest/v2/name/" + countryName)
                 .then(res2 => res2.json())
-                .then(CountryDetails => console.log(CountryDetails))
-                .then()
+                .then(countryDetails => displayMe(countryDetails));
+        }
 
+        function displayMe(country) {
+            let str = `<h1>${country.name}</h1>
+                        <p>My Capital:</p>${country.capital}  
+                        <p>Languages spoken:</p>
+                        <ul>`
+            for (lang in country.languages) {
+                str + "<li>" + lang.name + "</li>"
+            }
+            str += `</ul>
+                    <img src="" alt="">`;
+document.getElementById("country").innerHTML=str;
         }
 
     </script>
 </head>
 
-<body onload="getReqAllCountryNames()" >
+<body onload="getReqAllCountryNames()">
+
+<div id="country" >
+
+</div>
+
 
 </body>
 
