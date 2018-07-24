@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script>
-        function getReqCountry(){
+        function getReqAllCountryNames() {
             fetch("https://restcountries.eu/rest/v2/all?fields=name")
-            .then(res => res.json())
-            .then(content=>{
-                let index=Math.floor( Math.random() * 251);
-                return content[index]; })
-                .then(countryName=>{
-                    fetch("https://restcountries.eu/rest/v2/name/"+countryName)
+                .then(res => res.json())
+                .then(content => {
+                    let index = Math.floor(Math.random() * 251);
+                    return content[index].name;
                 })
+               // .then(countryName=>console.log(countryName));
+                .then(countryName => getReqSingelCountryDetails(countryName));
+
         }
+        function getReqSingelCountryDetails(countryName) {
+            fetch("https://restcountries.eu/rest/v2/name/" + countryName)
+                .then(res2 => res2.json())
+                .then(CountryDetails => console.log(CountryDetails))
+                .then()
+
+        }
+
     </script>
 </head>
-<body>
-    
+
+<body onload="getReqAllCountryNames()" >
+
 </body>
+
 </html>
